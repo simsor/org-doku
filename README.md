@@ -6,6 +6,8 @@ The initial goal of this project is to be able to take notes in Org-Mode and bro
 
 ## Installation
 
+This program needs Python 3, pip and pandoc installed on your machine in order to function properly.
+
 ```
 git clone https://github.com/simsor/org-doku.git
 cd org-doku
