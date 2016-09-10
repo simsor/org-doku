@@ -4,9 +4,16 @@
 import subprocess
 import os
 import re
+import sys
 
 from common import get_config, connect_wiki
 
+def check_pandoc():
+    try:
+        subprocess.run(["pandoc", "-v"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except FileNotFoundError:
+        print("This program needs pandoc to run. Please install it and try again.")
+        sys.exit(1)
 
 def convert_file(filename):
     name, ext = os.path.splitext(filename)
@@ -49,6 +56,7 @@ def set_last_modified(n):
         f.write(str(n))
 
 if __name__ == "__main__":
+    check_pandoc()
     config = get_config()
     wiki = connect_wiki(config["url"], config["user"], config["password"])
     
